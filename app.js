@@ -1,6 +1,6 @@
 // app.js
 
-// Importa los módulos necesarios para el proyecto.
+// Importa los módulos necesarios para el proyecto.111
 // makeWASocket: función principal de Baileys para crear el socket de WhatsApp.
 // useMultiFileAuthState: para guardar y cargar la sesión de autenticación.
 // DisconnectReason: para manejar las razones de desconexión.
