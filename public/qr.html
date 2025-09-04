@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="auto">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Conectar con WhatsApp</title>
+  <link rel="stylesheet" href="/qr.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="wa" aria-hidden="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.57 2 2.13 6.44 2.13 11.91c0 2.09.6 4.02 1.64 5.65L2 22l4.59-1.7c1.58.87 3.38 1.36 5.31 1.36 5.47 0 9.91-4.44 9.91-9.91S17.51 2 12.04 2Zm5.79 14.27c-.24.67-1.39 1.28-1.93 1.33-.5.05-1.13.08-1.83-.11-.42-.11-.96-.31-1.66-.6-2.92-1.27-4.81-4.23-4.96-4.43-.15-.2-1.19-1.58-1.19-3.01 0-1.43.75-2.13 1.02-2.42.27-.29.6-.36.8-.36.2 0 .4 0 .57.01.18.01.43-.07.67.51.24.58.82 2.01.9 2.16.07.15.11.33.02.53-.09.2-.13.33-.27.5-.13.16-.29.36-.42.49-.13.13-.27.27-.12.53.15.27.68 1.12 1.46 1.82 1.01.9 1.87 1.18 2.13 1.31.27.13.43.11.59-.07.16-.18.67-.79.85-1.06.18-.27.36-.22.6-.13.24.09 1.52.72 1.78.85.27.13.44.2.51.31.07.11.07.64-.16 1.31Z"/></svg>
+      </div>
+      <h1>Conectar con WhatsApp</h1>
+      <div class="spacer"></div>
+      <button id="themeBtn" class="btn-ghost" aria-label="Cambiar tema" title="Cambiar tema">🌙</button>
+    </header>
+
+    <section class="panel">
+      <!-- Instrucciones (se ocultan si conectado) -->
+      <div class="left" id="leftSteps">
+        <h2>Escanea el código QR</h2>
+        <ul class="steps">
+          <li class="step" data-n="1">Abre <strong>WhatsApp</strong> en tu teléfono.</li>
+          <li class="step" data-n="2">Ve a <strong>Configuración</strong> (iPhone) o <strong>Menú</strong> (Android) <span class="muted">→</span> <strong>Dispositivos vinculados</strong>.</li>
+          <li class="step" data-n="3">Toca <strong>Vincular un dispositivo</strong> y apunta al código QR.</li>
+        </ul>
+
+        <div id="connectedBox" class="connected" hidden>
+          <strong>✅ Conectado</strong>
+          <span>Vinculado como: <code id="jidLabel"></code></span>
+          <div>
+            <button id="logoutBtn" class="btn btn-danger" type="button">Cerrar sesión</button>
+          </div>
+        </div>
+
+        <div id="openButNotLinked" class="open-hint" hidden>
+          <strong>ℹ️ Socket abierto, esperando que escanees el QR.</strong>
+        </div>
+      </div>
+
+      <!-- Panel derecho -->
+      <div class="right">
+        <!-- QR y estado (se oculta si conectado) -->
+        <div class="qr-card" id="qrCard">
+          <div class="qr-frame"><img id="qrImg" alt="QR de WhatsApp" /></div>
+          <div id="statusPill" class="pill" hidden></div>
+          <button class="btn" id="refreshBtn" type="button">Recargar página</button>
+        </div>
+
+        <!-- Panel de estado cuando está conectado -->
+        <div class="connected-card" id="connectedCard" hidden>
+          <div class="connected-header">
+            <div class="dot ok"></div>
+            <div>
+              <div class="title">Bot conectado</div>
+              <div class="sub" id="deviceLabel">Dispositivo listo</div>
+            </div>
+            <div class="spacer"></div>
+            <button class="btn-ghost sm" id="copyNumberBtn" title="Copiar número">📋</button>
+          </div>
+
+          <div class="kv">
+            <div class="k">Número vinculado</div>
+            <div class="v"><code id="jidLabelTop"></code></div>
+          </div>
+
+          <!-- Último mensaje recibido -->
+          <div class="lastmsg">
+            <div class="lastmsg-title">Último mensaje</div>
+            <div class="lastmsg-grid">
+              <div class="k">Remitente</div><div class="v"><code id="lastFrom">—</code></div>
+              <div class="k">Origen</div><div class="v"><span id="lastScope">—</span></div>
+              <div class="k">Mensaje</div><div class="v"><span id="lastText">—</span></div>
+            </div>
+          </div>
+
+          <div class="actions">
+            <input id="testTo" class="input" type="text" placeholder="Número destino (p. ej. 34600111222)" />
+            <button id="testSendBtn" class="btn">Enviar prueba</button>
+            <button id="logoutBtnTop" class="btn btn-danger">Cerrar sesión</button>
+          </div>
+
+          <div class="log">
+            <div class="log-head">Eventos recientes</div>
+            <div id="liveLog" class="log-body"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>Hecho con Baileys · UI inspirada en WhatsApp Web · Modo claro/oscuro</footer>
+  </div>
+
+  <script src="/qr.js" defer></script>
+</body>
+</html>

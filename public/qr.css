@@ -1,0 +1,127 @@
+/* public/qr.css */
+
+/* Oscuro por defecto */
+:root {
+  --bg:#0b141a; --panel:#111b21; --text:#e9edef; --muted:#8696a0;
+  --brand:#00a884; --brand2:#25d366; --card:#1f2c33; --card-2:#202c33;
+  --outline:#23343d; --shadow:rgba(0,0,0,.35);
+}
+
+/* Claro */
+:root[data-theme="light"]{
+  --bg:#f2f2f2; --panel:#fff; --text:#1f2328; --muted:#5b6b76;
+  --brand:#00a884; --brand2:#25d366; --card:#fff; --card-2:#fff;
+  --outline:#e5e7eb; --shadow:rgba(0,0,0,.1);
+}
+
+/* Auto */
+@media (prefers-color-scheme: light){
+  :root[data-theme="auto"]{
+    --bg:#f2f2f2; --panel:#fff; --text:#1f2328; --muted:#5b6b76;
+    --brand:#00a884; --brand2:#25d366; --card:#fff; --card-2:#fff;
+    --outline:#e5e7eb; --shadow:rgba(0,0,0,.1);
+  }
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+  background:radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb,var(--bg) 80%, #1c2a31), var(--bg) 60%);
+  color:var(--text);
+}
+
+.wrap{max-width:1100px;margin:40px auto;padding:0 20px}
+header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.spacer{flex:1}
+.wa{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));
+  display:grid;place-items:center;box-shadow:0 8px 24px color-mix(in srgb,var(--brand) 35%, transparent)}
+.wa svg{width:24px;height:24px;fill:#fff}
+h1{margin:0;font-size:22px}
+
+.btn-ghost{border:1px solid var(--outline);background:transparent;color:var(--text);border-radius:10px;padding:8px 12px;cursor:pointer}
+.btn-ghost:hover{background:color-mix(in srgb,var(--text) 8%, transparent)}
+.btn-ghost.sm{padding:6px 8px;border-radius:8px}
+
+.panel{
+  background:var(--panel);border:1px solid var(--outline);border-radius:16px;
+  display:grid;grid-template-columns:1.2fr 1fr;overflow:hidden;box-shadow:0 10px 40px var(--shadow)
+}
+.left{padding:28px;border-right:1px solid var(--outline)}
+.left h2{margin:0 0 16px 0;font-size:18px}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.step{background:var(--card);border:1px solid var(--outline);border-radius:12px;padding:14px 14px 14px 48px;position:relative}
+.step::before{content:attr(data-n);position:absolute;left:12px;top:12px;width:24px;height:24px;border-radius:50%;
+  display:grid;place-items:center;background:var(--brand);color:#002b21;font-weight:700;font-size:12px}
+.muted{color:var(--muted)}
+
+.right{
+  padding:28px;display:grid;gap:16px;place-items:start;
+  background:linear-gradient(180deg,color-mix(in srgb,var(--bg) 92%, #0e171c), var(--panel))
+}
+.qr-card{width:320px;max-width:100%;background:var(--card-2);border:1px solid var(--outline);border-radius:16px;padding:16px;text-align:center}
+.qr-frame{aspect-ratio:1/1;background:#fff;border-radius:12px;display:grid;place-items:center;overflow:hidden;border:2px solid #fff}
+.qr-frame img{width:100%;height:100%;object-fit:contain}
+
+.pill{margin-top:12px;display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;
+  background:color-mix(in srgb,var(--brand) 12%, transparent);border:1px solid color-mix(in srgb,var(--brand) 35%, transparent);
+  font-size:13px;color:color-mix(in srgb,var(--brand2) 65%, var(--text))}
+.pill.danger{background:rgba(255,86,86,.12);border-color:rgba(255,86,86,.35);color:#cc7a7a}
+
+.btn{margin-top:14px;display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid var(--outline);
+  background:color-mix(in srgb,var(--bg) 75%, #172229);color:var(--text);cursor:pointer;transition:transform .08s, background .15s}
+.btn:hover{background:color-mix(in srgb,var(--bg) 65%, #1a2730)}
+.btn:active{transform:translateY(1px)}
+
+.btn-danger{border-color:#e06666;background:color-mix(in srgb,#e06666 20%, transparent)}
+.btn-danger:hover{background:color-mix(in srgb,#e06666 35%, transparent)}
+
+.connected{display:grid;gap:10px;margin-top:16px;padding:14px;border-radius:12px;
+  background:color-mix(in srgb,var(--brand) 12%, transparent);
+  border:1px solid color-mix(in srgb,var(--brand) 35%, transparent);
+  color:color-mix(in srgb,var(--brand2) 70%, var(--text))
+}
+
+.open-hint{margin-top:16px;padding:12px 14px;border-radius:12px;background:color-mix(in srgb,var(--text) 6%, transparent);border:1px dashed var(--outline);color:var(--text)}
+
+/* Panel conectado */
+.connected-card{
+  width:100%;max-width:560px;background:var(--card-2);border:1px solid var(--outline);
+  border-radius:16px;padding:16px;box-shadow:0 10px 30px var(--shadow)
+}
+.connected-header{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.ok{background:#22c55e}
+.dot.bad{background:#ef4444}
+.title{font-weight:700}
+.sub{font-size:12px;color:var(--muted)}
+.kv{display:grid;grid-template-columns:160px 1fr;gap:8px 12px;margin:10px 0}
+.k{color:var(--muted)}
+.v code{padding:2px 6px;border-radius:6px;border:1px solid var(--outline);background:color-mix(in srgb,var(--text) 6%, transparent)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.input{
+  flex:1 1 220px; padding:10px 12px; border:1px solid var(--outline); border-radius:10px;
+  background: color-mix(in srgb, var(--bg) 85%, #fff); color: var(--text);
+}
+
+/* Último mensaje */
+.lastmsg{margin:8px 0 6px}
+.lastmsg-title{font-weight:600;margin-bottom:6px}
+.lastmsg-grid{display:grid;grid-template-columns:160px 1fr;gap:6px 12px}
+.lastmsg .v code{padding:2px 6px;border-radius:6px;border:1px solid var(--outline);background:color-mix(in srgb,var(--text) 6%, transparent)}
+
+.log{margin-top:12px}
+.log-head{font-size:12px;color:var(--muted);margin-bottom:6px}
+.log-body{
+  height:160px; overflow:auto; border:1px solid var(--outline); border-radius:10px;
+  background: color-mix(in srgb, var(--bg) 92%, #fff); padding:8px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size:12px; line-height:1.35;
+}
+.log-line{white-space:pre-wrap;margin:0}
+
+footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}
+
+@media (max-width:900px){
+  .panel{grid-template-columns:1fr}
+  .left{border-right:0;border-bottom:1px solid var(--outline)}
+}
